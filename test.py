@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np 
 import datetime,time
 
+
+# 测试代码，测试func_cols_agg_by_id
 def test_01():
     df = pd.DataFrame({
         'cst_id':  [1,2,3,4,5,6]
