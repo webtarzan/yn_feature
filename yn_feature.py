@@ -4,17 +4,16 @@ import datetime,time
 from sklearn.preprocessing import PolynomialFeatures
 
 
-def func_cols_agg_by_id(df:pd.DataFrame,id=[],agg_cols=[]):
+
+def func_num_agg_by_id(df:pd.DataFrame,id=[],num_feature=[]):
     """
-    对数值变量 进行聚合操作 并求出聚合数据
+  
+    根据指定的 [id,] 比如（客户编号、卡号）列对对应的 数值变量 [num_feature] 进行聚合 比如进行聚集特征统计：
 
     参数:
         df : 原始数据框 DataFrame  
-        id :就是 主键
-        dt :日期变量
-        cat_feature: 分类变量名列表
-        num_feature: 数值变量名列表
-        verbose: 日志打印详细程度
+        id :就是 主键列表 
+        num_feature: 分类变量名列表
     输出:
         输出新的DataFrame,并且自动命名
         df 
@@ -37,7 +36,7 @@ def func_cols_agg_by_id(df:pd.DataFrame,id=[],agg_cols=[]):
     # 根据id 进行增删改查
     group_cols = id
     # 根据数值变量进行统计
-    agg_cols = agg_cols
+    agg_cols = num_feature
 
 
     df_agg = df.groupby(group_cols)[agg_cols].agg(funcs)
@@ -57,6 +56,43 @@ def func_cols_agg_by_id(df:pd.DataFrame,id=[],agg_cols=[]):
     return df_agg.reset_index()
 
 
+# 时间序列特征统计 1  
+def func_by_timeline(df:pd.DataFrame,id:str,dt:datetime.datetime,cat_feature=[] ,num_feature=[]):
+    """
+    对数值变量 进行聚合操作
+
+    参数:
+        df : 原始数据框 DataFrame  
+        id :就是 主键列表
+        dt :日期变量列表
+        cat_feature: 分类变量名列表
+        num_feature: 数值变量名列表
+    输出:
+        输出新的DataFrame,并且自动命名
+        df 
+    """
+    return df 
+
+
+# 根据时间窗进行统计  
+def func_by_time_window(df:pd.DataFrame,id:str,dt:datetime.datetime,num_feature=[]):
+    """
+    对数值变量 进行 时间窗 滑动统计
+
+    参数:
+        df : 原始数据框 DataFrame  
+        id :就是 主键列表
+        dt :日期变量列表
+        num_feature: 数值变量名列表
+    输出:
+        输出新的DataFrame,并且自动命名
+        df 
+    """
+    return df 
+
+
+
+
 def get_feats_row_poly(self, df, feats=None, degree=2, return_df=True):
     """PolynomialFeatures
     :param data: np.array or pd.DataFrame
@@ -74,29 +110,6 @@ def get_feats_row_poly(self, df, feats=None, degree=2, return_df=True):
     if return_df:
         df = pd.DataFrame(df, columns=self.feat_poly_cols)
     return df
-
-
-
-
-def ft_single_numerical_feature(df:pd.DataFrame,id:str,dt,cat_feature=[] ,num_feature=[],verbose=10):
-    """
-    对数值变量 进行聚合操作
-
-    参数:
-        df : 原始数据框 DataFrame  
-        id :就是 主键
-        dt :日期变量
-        cat_feature: 分类变量名列表
-        num_feature: 数值变量名列表
-        verbose: 日志打印详细程度
-    输出:
-        输出新的DataFrame,并且自动命名
-        df 
-    """
-    return df 
-
-
-
 
 
 
